@@ -1,14 +1,17 @@
 import 'dart:io';
 
-bool pass = false;
 void main() {
-  List<Gamblers>;
+  List<Gamblers> gamblers = [];
+  for (int i = 0; i < 3; i++) {
+    gamblers.add(welcome());
+    print("$gamblers\n${gamblers[i].name}\n${gamblers[i].num}");
+  }
 }
 
 class Gamblers {
-  String name;
+  String? name;
 
-  List<List<int>> num = [];
+  List<List> num = [];
 
   Gamblers(this.name);
 
@@ -16,19 +19,31 @@ class Gamblers {
     this.name = changed_name;
   }
 
-  void addNewNum(int new_no, int val) {
-    List<int> new_pair = [new_no, val];
+  void addNewNum(String new_no, int val) {
+    List new_pair = [new_no, val];
     num.add(new_pair);
   }
 }
 
-void welcome() {
-  try {
-    String? gambler_name = stdin.readLineSync();
-    print(gambler_name);
-  } catch (e) {
-    print(e);
+Gamblers welcome() {
+  print("Enter name");
+  String? gambler_name = stdin.readLineSync();
+  Gamblers gambler = Gamblers(gambler_name);
+
+  void add_new_num_to_gambler() {
+    print("Enter no");
+    String? gambler_num_str = stdin.readLineSync();
+
+    print("Enter val");
+    String? gambler_val_str = stdin.readLineSync();
+
+    int gambler_val = int.parse(gambler_val_str!);
+
+    gambler.addNewNum(gambler_num_str!, gambler_val);
   }
+
+  add_new_num_to_gambler();
+  return gambler;
 }
 
 
@@ -39,3 +54,7 @@ void welcome() {
     [456, 40],
     [234, 10]
   ];            */
+
+
+
+  //   

@@ -1,19 +1,19 @@
 import 'dart:io';
 
 void main() {
-  List<Gamblers> gamblers = [];
+  List<Gambler> gamblers = [];
   for (int i = 0; i < 3; i++) {
-    gamblers.add(welcome());
+    gamblers.add(add_new_gambler());
     print("$gamblers\n${gamblers[i].name}\n${gamblers[i].num}");
   }
 }
 
-class Gamblers {
+class Gambler {
   String? name;
 
   List<List> num = [];
 
-  Gamblers(this.name);
+  Gambler(this.name);
 
   void changeName(String changed_name) {
     this.name = changed_name;
@@ -25,36 +25,29 @@ class Gamblers {
   }
 }
 
-Gamblers welcome() {
-  print("Enter name");
-  String? gambler_name = stdin.readLineSync();
-  Gamblers gambler = Gamblers(gambler_name);
+// Gambler welcome() {}
 
-  void add_new_num_to_gambler() {
+void add_new_num_to_gambler(Gambler new_gambler, int times) {
+  for (int i = 0; i <= times; i++) {
     print("Enter no");
-    String? gambler_num_str = stdin.readLineSync();
+    String? gambler_num = stdin.readLineSync();
 
     print("Enter val");
-    String? gambler_val_str = stdin.readLineSync();
+    int gambler_val = int.parse(stdin.readLineSync()!);
 
-    int gambler_val = int.parse(gambler_val_str!);
-
-    gambler.addNewNum(gambler_num_str!, gambler_val);
+    new_gambler.addNewNum(gambler_num!, gambler_val);
   }
-
-  add_new_num_to_gambler();
-  return gambler;
 }
 
+Gambler add_new_gambler() {
+  print("Enter name");
+  String? gambler_name = stdin.readLineSync();
+  Gambler gambler = Gambler(gambler_name);
 
+  print("How many numbers do you want to add?");
+  int times = int.parse(stdin.readLineSync()!);
 
+  add_new_num_to_gambler(gambler, times);
 
-  /* STRUCTURE of lucky_no...
-  [
-    [456, 40],
-    [234, 10]
-  ];            */
-
-
-
-  //   
+  return gambler;
+}

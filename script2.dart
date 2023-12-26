@@ -7,12 +7,14 @@ void main() {
   for (int i = 0; i < 5; i++) {
     add_new_gambler_to_db(just_test_delete[i]);
   }
-  duplicate_number(gambler_list[0], "234", 1000);
+  duplicate_number(gambler_list[0], "231", 1000);
   print(gambler_list[0].numbers_and_prices);
 
   for (int i = 0; i < 5; i++) {
     print(gambler_list[i].numbers_and_prices);
   }
+
+  find_lucky_no();
 }
 
 class Gambler {
@@ -76,4 +78,19 @@ void duplicate_number(Gambler gambler_for_test, String no, int pri) {
 
 void add_numbers(Gambler gambler_for_test, String no, int pri) {
   gambler_for_test.numbers_and_prices.add([no, pri]);
+}
+
+void find_lucky_no() {
+  String lucky_no = "231";
+  gambler_list_length = gambler_list.length;
+  for (int i = 0; i < gambler_list_length; i++) {
+    int gambler_no_list = gambler_list[i].numbers_and_prices.length;
+    for (int j = 0; j < gambler_no_list; j++) {
+      if ((gambler_list[i].numbers_and_prices[j][0]) == lucky_no) {
+        print(
+            "${gambler_list[i].name} bingo with the no ${gambler_list[i].numbers_and_prices[j][0]} the amount he/she win is ${gambler_list[i].numbers_and_prices[j][1] * 650}");
+        break;
+      }
+    }
+  }
 }

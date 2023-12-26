@@ -4,23 +4,23 @@ int pass = 0;
 List<String> just_test_delete = ["name1", "name2", "name3", "name4", "name5"];
 
 void main() {
-  for (int i = 0; i < 5; i++) {
+  for (int i = 0; i < 1; i++) {
     add_new_gambler_to_db(just_test_delete[i]);
   }
   print(gambler_list);
   print(gambler_list[0].name);
   // print(gambler_list[0].numbers_and_prices);
-  print(gambler_list[1].name);
-  print(gambler_list[2].name);
-  print(gambler_list[3].name);
-  print(gambler_list[4].name);
+  // print(gambler_list[1].name);
+  // print(gambler_list[2].name);
+  // print(gambler_list[3].name);
+  // print(gambler_list[4].name);
 }
 
 class Gambler {
   String name = "Unknown";
-  // Map<String, int> numbers_and_prices = {
-  //   "345": 34,
-  // };
+  Map<String, int> numbers_and_prices = {
+    "345": 34,
+  };
 }
 
 void add_new_gambler_to_db(String name_of_gambler_for_delete) {
@@ -35,6 +35,7 @@ void add_new_gambler_to_db(String name_of_gambler_for_delete) {
   String no = "345";
   int pri = 30;
   Map<String, int> new_number_in_angtd_fun = {no: pri};
+  duplicate_number(new_gamler_in_angtd_fun, new_number_in_angtd_fun);
 }
 
 int duplicate_name(String name_for_testing) {
@@ -59,4 +60,9 @@ void change_name() {
   } else {
     print("name don't found");
   }
+}
+
+void duplicate_number(
+    Gambler gambler_for_test, Map<String, int> numbers_and_prices_for_test) {
+  print("${gambler_for_test.numbers_and_prices.length}");
 }

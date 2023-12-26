@@ -4,23 +4,24 @@ int pass = 0;
 List<String> just_test_delete = ["name1", "name2", "name3", "name4", "name5"];
 
 void main() {
-  for (int i = 0; i < 1; i++) {
+  for (int i = 0; i < 5; i++) {
     add_new_gambler_to_db(just_test_delete[i]);
   }
-  print(gambler_list);
-  print(gambler_list[0].name);
-  // print(gambler_list[0].numbers_and_prices);
-  // print(gambler_list[1].name);
-  // print(gambler_list[2].name);
-  // print(gambler_list[3].name);
-  // print(gambler_list[4].name);
+  duplicate_number(gambler_list[0], "234", 1000);
+  print(gambler_list[0].numbers_and_prices);
+
+  for (int i = 0; i < 5; i++) {
+    print(gambler_list[i].numbers_and_prices);
+  }
 }
 
 class Gambler {
   String name = "Unknown";
-  Map<String, int> numbers_and_prices = {
-    "345": 34,
-  };
+  List<List> numbers_and_prices = [
+    ["234", 30],
+    ["384", 50],
+    ["345", 10]
+  ];
 }
 
 void add_new_gambler_to_db(String name_of_gambler_for_delete) {
@@ -31,11 +32,6 @@ void add_new_gambler_to_db(String name_of_gambler_for_delete) {
   if (pass == -1) {
     gambler_list.add(new_gamler_in_angtd_fun);
   }
-  print("adding Numbers for ${new_gamler_in_angtd_fun.name}:");
-  String no = "345";
-  int pri = 30;
-  Map<String, int> new_number_in_angtd_fun = {no: pri};
-  duplicate_number(new_gamler_in_angtd_fun, new_number_in_angtd_fun);
 }
 
 int duplicate_name(String name_for_testing) {
@@ -51,7 +47,7 @@ int duplicate_name(String name_for_testing) {
 }
 
 void change_name() {
-  String name_to_search = "name6";
+  String name_to_search = "name1";
   String new_name = "name_changed";
   pass = duplicate_name(name_to_search);
   if (pass > -1) {
@@ -62,7 +58,22 @@ void change_name() {
   }
 }
 
-void duplicate_number(
-    Gambler gambler_for_test, Map<String, int> numbers_and_prices_for_test) {
-  print("${gambler_for_test.numbers_and_prices.length}");
+void duplicate_number(Gambler gambler_for_test, String no, int pri) {
+  print("adding Numbers for ${gambler_for_test.name}:");
+  pass = 0;
+  gambler_list_length = gambler_for_test.numbers_and_prices.length;
+  for (int i = 0; i < gambler_list_length; i++) {
+    if ((gambler_for_test.numbers_and_prices[i][0]) == no) {
+      gambler_for_test.numbers_and_prices[i][1] += pri;
+      pass = -1;
+      break;
+    }
+  }
+  if (pass != -1) {
+    add_numbers(gambler_for_test, no, pri);
+  }
+}
+
+void add_numbers(Gambler gambler_for_test, String no, int pri) {
+  gambler_for_test.numbers_and_prices.add([no, pri]);
 }
